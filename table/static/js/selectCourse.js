@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 var moduleNTHUCourse = angular.module('ModuleNTHUCourse', ['ui.bootstrap', 'ngCookies']);
-=======
-var moduleNTHUCourse = angular.module('ModuleNTHUCourse', ['ui.bootstrap']);
->>>>>>> 80ba8336279d988ed27c9372dcafd599e3cfe2c8
 var semester = '10410';
 
 moduleNTHUCourse.filter('courseInThatTime', function() {

@@ -115,7 +115,9 @@ def course_manipulation(request, id):
         elif request.method == 'DELETE':
             request.user.member.courses.remove(course)
 
-    return JsonResponse('')
+        return HttpResponse(status=204)
+
+    return HttpResponse(status=202)
 
 
 def courses_status(request):
