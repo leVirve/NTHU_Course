@@ -116,14 +116,28 @@ moduleNTHUCourse.controller("CourseCtrl", function($scope, $cookies) {
   // Init data
   init();
   toastr.options.timeOut = 1500;
+  var local_data = JSON.parse(localStorage.getItem('added_course'));
 
   $.get('/search/status/', function(remote_data) {
+    var merged_data = remote_data.courses;
     if (remote_data.total > 0) {
-      var local_data = JSON.parse(localStorage.getItem('added_course'));
-      // merge remote data into local
-      $.extend(local_data, remote_data.courses);
-      localStorage.setItem('added_course', JSON.stringify(local_data));
+      var remote_ids = [];
+      for (var i in remote_data.courses) {
+        remote_ids.push(remote_data.courses[i].id);
+      }
+      console.log(remote_ids);
+      for (var i in local_data) {
+        var c = local_data[i];
+        // merge remote data into local
+        if (remote_ids.indexOf(c.id) < 0) {
+          register_course('PUT', c.id);
+          merged_data.push(c);
+        }
+      }
+    } else {
+      merged_data = local_data;
     }
+    localStorage.setItem('added_course', JSON.stringify(merged_data));
     load_localStorage();
     $scope.$apply();
   });
