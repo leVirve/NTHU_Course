@@ -1,0 +1,20 @@
+db:
+    image: mysql
+    environment:
+        - MYSQL_ROOT_PASSWORD=verysecret
+        - MYSQL_USER=course
+        - MYSQL_PASSWORD=5566
+        - MYSQL_DATABASE=course
+    volumes:
+        - ./NTHU_Course/mysql.ini:/etc/mysql/conf.d/my.cnf
+web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000 --insecure
+    volumes:
+        - .:/code
+    ports:
+        - "8000:8000"
+    links:
+        - db
+    environment:
+        - DJANGO_SETTINGS_MODULE=NTHU_Course.settings.docker
