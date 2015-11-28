@@ -1,12 +1,14 @@
 db:
     image: mysql
+    ports:
+        - "3306:3306"
     environment:
         - MYSQL_ROOT_PASSWORD=verysecret
         - MYSQL_USER=course
         - MYSQL_PASSWORD=5566
         - MYSQL_DATABASE=course
     volumes:
-        - ./NTHU_Course/mysql.ini:/etc/mysql/conf.d/my.cnf
+        - ./NTHU_Course/mysql_charset.ini:/etc/mysql/conf.d/charset.cnf
 web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000 --insecure
