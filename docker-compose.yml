@@ -2,11 +2,8 @@ db:
     image: mysql
     ports:
         - "3306:3306"
-    environment:
-        - MYSQL_ROOT_PASSWORD=verysecret
-        - MYSQL_USER=course
-        - MYSQL_PASSWORD=5566
-        - MYSQL_DATABASE=course
+    env_file:
+        - .env
     volumes:
         - ./NTHU_Course/mysql_charset.ini:/etc/mysql/conf.d/charset.cnf
 web:
