@@ -128,7 +128,7 @@ def course_from_tr(main_tr):
             text = text.strip()
         part[key] = text
     prerequisite = extract_text(tds[10])
-    if prerequisite:
+    if prerequisite == u'擋修':
         part['has_prerequisite'] = True
     else:
         assert not prerequisite, 'unknown prerequisite %r' % prerequisite
