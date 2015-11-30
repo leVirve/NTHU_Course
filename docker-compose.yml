@@ -8,7 +8,7 @@ db:
         - ./NTHU_Course/mysql_charset.ini:/etc/mysql/conf.d/charset.cnf
 web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000 --insecure
+    command: sh start.sh
     volumes:
         - .:/code
     ports:
