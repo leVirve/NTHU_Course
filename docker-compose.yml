@@ -6,7 +6,7 @@ db:
         - ./NTHU_Course/mysql_charset.ini:/etc/mysql/conf.d/charset.cnf
 web:
     build: .
-    command: sh start.sh
+    command: sh ./bin/start.sh
     volumes:
         - .:/code
     ports:
