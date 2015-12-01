@@ -17,12 +17,13 @@ web:
     environment:
         - DJANGO_SETTINGS_MODULE=NTHU_Course.settings.docker
 nginx:
+    image: nginx
     restart: always
-    build: ./bin/nginx/
     ports:
       - "80:80"
     volumes:
       - /www/static
+      - ./bin/nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
     volumes_from:
       - web
     links:
