@@ -51,3 +51,21 @@ SECRET_KEY=hard-to-guess-string
 ```
 
 this can be achieved by ``heroku config:set`` or the web panel
+
+
+# Build with Docker
+Require docker and docker-compose.
+
+- Set up your enviroment variable in `.env` first. Values should be the same as that in `mysql.ini` .
+```ini
+MYSQL_ROOT_PASSWORD=very_secret_dont_expose_on_github
+MYSQL_USER=course
+MYSQL_PASSWORD=very_secret_too
+MYSQL_DATABASE=course
+```
+- Set your `server_name` in project `./bin/nginx/nginx.conf`    
+
+- Use `docker-compose build` to build up containers defined by docker-compose.yml
+- Use `docker-compose up` to turn the service on. Option: `-d` can make command dettach; then you can use `docker-compose logs` to check the log.
+- Remember run `docker-compose run web python manage.py syncdb` to initial the database in django project.
+- Finally, use `docker-compose run <container-name> <command>` to control containers. 
