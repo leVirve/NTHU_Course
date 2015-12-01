@@ -65,7 +65,8 @@ MYSQL_DATABASE=course
 ```
 - Set your `server_name` in project `./bin/nginx/nginx.conf`    
 
-- Use `docker-compose build` to build up containers defined by docker-compose.yml
-- Use `docker-compose up` to turn the service on. Option: `-d` can make command dettach; then you can use `docker-compose logs` to check the log.
-- Remember run `docker-compose run web python manage.py syncdb` to initial the database in django project.
-- Finally, use `docker-compose run <container-name> <command>` to control containers. 
+- About docker-compose
+    1. Use `docker-compose build` to build up containers defined by docker-compose.yml
+    2. Use `docker-compose up` to turn the service on. Option: `-d` can make command dettach; then you can use `docker-compose logs` to check the log.
+    3. Remember run `docker-compose run web python manage.py syncdb` to initial the database in django project.
+    4. Finally, use `docker-compose run <container-name> <command>` to control containers. 
