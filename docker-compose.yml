@@ -3,7 +3,7 @@ db:
     env_file:
         - .env
     volumes:
-        - ./NTHU_Course/mysql_charset.ini:/etc/mysql/conf.d/charset.cnf
+        - ./bin/mysql/mysql_charset.conf:/etc/mysql/conf.d/charset.cnf
 web:
     restart: always
     build: .
