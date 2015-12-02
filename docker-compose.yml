@@ -3,10 +3,11 @@ db:
     env_file:
         - .env
     volumes:
-        - ./NTHU_Course/mysql_charset.ini:/etc/mysql/conf.d/charset.cnf
+        - ./bin/mysql/mysql_charset.conf:/etc/mysql/conf.d/charset.cnf
 web:
+    restart: always
     build: .
-    command: sh start.sh
+    command: gunicorn -w 4 NTHU_Course.wsgi:application -b 0.0.0.0:8000
     volumes:
         - .:/code
     ports:
@@ -15,3 +16,15 @@ web:
         - db
     environment:
         - DJANGO_SETTINGS_MODULE=NTHU_Course.settings.docker
+nginx:
+    image: nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - /www/static
+      - ./bin/nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+    volumes_from:
+      - web
+    links:
+      - web:web
