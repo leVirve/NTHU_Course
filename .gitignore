@@ -4,6 +4,7 @@ whoosh_index
 
 # DB
 mysql.ini
+*.sqlite
 
 # Garbage
 .DS_Store
